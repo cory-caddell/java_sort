@@ -12,8 +12,9 @@ public class CoryCaddellAssignment2B {
 		// get array
 		// copy array
 		// display array to console
-		CoryCaddellPrintArray(array);
 		// sort using insertion sort algorithm
+		CoryCaddellInsertionSort(array);
+//		CoryCaddellPrintArray(array);
 		// sort using bubble sort algorithm
 		// sort using merge sort algorithm
 		// sort using quick sort algorithm
@@ -21,9 +22,31 @@ public class CoryCaddellAssignment2B {
 	
 	/** Method to print elements of array. */
 	public static void CoryCaddellPrintArray(int[] array) {
+		
 		for (int element : array) {
 			System.out.print(element + "\t");
 		}
+		
+	}
+	
+	/** Method to sort array via insertion sort algorithm. */
+	public static void CoryCaddellInsertionSort(int[] array) {
+		
+		// iterate through array beginning with second element
+		for (int i = 1; i < array.length; i++) {
+			
+			int currentElement = array[i];	// temp variable to store current element, since it could be overwritten
+			int k;
+			
+			// if previous element(s) are greater than current element
+			for (k = i - 1; k >= 0 && array[k] > currentElement; k--) {
+				
+				array[k + 1] = array[k]; // move/copy larger element to index + 1 position in array, overriding the current value in that index
+			}
+			
+			array[k + 1] = currentElement; // insert current/smaller element
+		}
+	
 	}
 
 }
