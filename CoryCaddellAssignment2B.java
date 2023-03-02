@@ -13,9 +13,11 @@ public class CoryCaddellAssignment2B {
 		// copy array
 		// display array to console
 		// sort using insertion sort algorithm
-		CoryCaddellInsertionSort(array);
+//		CoryCaddellInsertionSort(array);
 //		CoryCaddellPrintArray(array);
 		// sort using bubble sort algorithm
+		CoryCaddellBubbleSort(array);
+		CoryCaddellPrintArray(array);
 		// sort using merge sort algorithm
 		// sort using quick sort algorithm
 	}
@@ -46,7 +48,28 @@ public class CoryCaddellAssignment2B {
 			
 			array[k + 1] = currentElement; // insert current/smaller element
 		}
+	}
 	
+	/** Method to sort array via bubble sort algorithm.  */
+	public static void CoryCaddellBubbleSort(int[] array) {
+		
+		boolean nextPass = true;
+		for (int k = 1; k < array.length && nextPass; k++) {
+			
+			nextPass = false;
+			
+			for (int i = 0; i < array.length - k; i++) {
+								
+				if (array[i] > array[i + 1]) {
+					
+					int temp = array[i];
+					array[i] = array[i + 1];
+					array[i + 1] = temp;
+					
+					nextPass = true;
+				}
+			}
+		}
 	}
 
 }
