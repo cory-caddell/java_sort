@@ -16,9 +16,11 @@ public class CoryCaddellAssignment2B {
 //		CoryCaddellInsertionSort(array);
 //		CoryCaddellPrintArray(array);
 		// sort using bubble sort algorithm
-		CoryCaddellBubbleSort(array);
-		CoryCaddellPrintArray(array);
+//		CoryCaddellBubbleSort(array);
+//		CoryCaddellPrintArray(array);
 		// sort using merge sort algorithm
+		CoryCaddellMergeSort(array);
+		CoryCaddellPrintArray(array);
 		// sort using quick sort algorithm
 	}
 	
@@ -53,15 +55,20 @@ public class CoryCaddellAssignment2B {
 	/** Method to sort array via bubble sort algorithm.  */
 	public static void CoryCaddellBubbleSort(int[] array) {
 		
-		boolean nextPass = true;
+		boolean nextPass = true;  		// control variable - only need to cycle through array multiple times if not sorted
+		
+		// control loop - reduce amount of comparisons after each iteration, since largest element in array is moved to end of array
 		for (int k = 1; k < array.length && nextPass; k++) {
 			
 			nextPass = false;
 			
+			// cycle through array comparing adjacent elements
 			for (int i = 0; i < array.length - k; i++) {
 								
+				// if current element is greater than next element
 				if (array[i] > array[i + 1]) {
 					
+					// swap the element values
 					int temp = array[i];
 					array[i] = array[i + 1];
 					array[i + 1] = temp;
@@ -72,4 +79,41 @@ public class CoryCaddellAssignment2B {
 		}
 	}
 
+	/** Method to sort array via merge sort algorithm. */
+	public static void CoryCaddellMergeSort(int[] array) {
+				
+		if(array.length > 1) {
+			
+			int[] firstHalf = new int[array.length / 2];
+			System.arraycopy(array, 0, firstHalf, 0, array.length / 2);
+			CoryCaddellMergeSort(firstHalf);
+			
+			int[] secondHalf = new int[array.length - firstHalf.length];
+			System.arraycopy(array, firstHalf.length, secondHalf, 0, secondHalf.length);
+			CoryCaddellMergeSort(secondHalf);
+			
+			// Merge the two sorted lists
+			int firstHalfIndex = 0;		// current index of first half array
+			int secondHalfIndex = 0;	// current index of second half array
+			int originalArrayIndex = 0;	// current index of original array
+			
+			while(firstHalfIndex < firstHalf.length && secondHalfIndex < secondHalf.length) {
+				
+				if (firstHalf[firstHalfIndex] < secondHalf[secondHalfIndex]) {
+					array[originalArrayIndex++] = firstHalf[firstHalfIndex++];
+				}
+				else {
+					array[originalArrayIndex++] = secondHalf[secondHalfIndex++];
+				}
+			}
+			
+			while (firstHalfIndex < firstHalf.length) {
+				array[originalArrayIndex++] = firstHalf[firstHalfIndex++];					
+			}
+			
+			while (secondHalfIndex < secondHalf.length) {
+				array[originalArrayIndex++] = secondHalf[secondHalfIndex++];					
+			}
+		}
+	}
 }
