@@ -4,27 +4,87 @@ import java.util.Scanner;
 
 public class CoryCaddellAssignment2B {
 	
+	/** Program demonstrates various sorting algorithms. */
 	public static void main(String[] args) {
 		
-		// delete me!!!
-		int[] array = {8, 3, 2, 6, 0, 7, 1, 5, 4, 9};
-		
 		// get array
-		// copy array
-		// display array to console
-		// sort using insertion sort algorithm
-//		CoryCaddellInsertionSort(array);
-//		CoryCaddellPrintArray(array);
-		// sort using bubble sort algorithm
-//		CoryCaddellBubbleSort(array);
-//		CoryCaddellPrintArray(array);
-		// sort using merge sort algorithm
-//		CoryCaddellMergeSort(array);
-//		CoryCaddellPrintArray(array);
-		// sort using quick sort algorithm
-		CoryCaddellQuickSort(array);
-		CoryCaddellPrintArray(array);
+		int[] CoryCaddellArray = CoryCaddellGetArray();
 		
+		// display "INSERTION POINT" to console
+		System.out.println("INSERTION SORT");
+		
+		// copy array and display to console
+		int[] CoryCaddellArrayI = CoryCaddellCopyArray(CoryCaddellArray);
+		CoryCaddellPrintArray(CoryCaddellArrayI);
+		
+		// sort array using insertion algorithm and display to console
+		CoryCaddellInsertionSort(CoryCaddellArrayI);
+		System.out.println();
+		CoryCaddellPrintArray(CoryCaddellArrayI);
+		
+		// display "BUBBLE SORT" to console
+		System.out.println("\nBUBBLE SORT");
+		
+		// copy array and display to console
+		int[] CoryCaddellArrayB = CoryCaddellCopyArray(CoryCaddellArray);
+		CoryCaddellPrintArray(CoryCaddellArrayB);
+		
+		// sort array using bubble sort algorithm and display to console
+		CoryCaddellBubbleSort(CoryCaddellArrayB);
+		System.out.println();
+		CoryCaddellPrintArray(CoryCaddellArrayB);
+		
+		//display "MERGE SORT" to console
+		System.out.println("\nMERGE SORT");
+		
+		// copy array and display to console
+		int[] CoryCaddellArrayM = CoryCaddellCopyArray(CoryCaddellArray);
+		CoryCaddellPrintArray(CoryCaddellArrayM);
+		
+		// sort array using merge sort algorithm and display to console
+		CoryCaddellMergeSort(CoryCaddellArrayM);
+		System.out.println();
+		CoryCaddellPrintArray(CoryCaddellArrayM);
+		
+		// display "QUICK SORT" to console
+		System.out.println("\nMERGE SORT");
+		
+		// copy and array and display to console
+		int[] CoryCaddellArrayQ = CoryCaddellCopyArray(CoryCaddellArray);
+		CoryCaddellPrintArray(CoryCaddellArrayQ);
+		
+		// sort array using quick sort algorithm and display to console
+		CoryCaddellQuickSort(CoryCaddellArrayQ);
+		System.out.println();
+		CoryCaddellPrintArray(CoryCaddellArrayQ);
+	}
+	
+	/** Method to get 10 integral numbers from user. */
+	public static int[] CoryCaddellGetArray() {
+		
+		int SIZE = 10;
+		int[] arrayA = new int[SIZE];
+		
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("Enter " + SIZE +  " integral numbers: ");
+		for (int i = 0; i < SIZE; i++) {
+			arrayA[i] = keyboard.nextInt();
+		}
+		keyboard.close();
+		
+		return arrayA;
+	}
+	
+	/** Method to make a copy of an integer array. */
+	public static int[] CoryCaddellCopyArray(int[] arrayA) {
+		
+		int[] arrayB = new int[arrayA.length];
+		
+		for (int i = 0; i < arrayA.length; i++) {
+			arrayB[i] = arrayA[i];
+		}
+		
+		return arrayB;
 	}
 	
 	/** Method to print elements of array. */
