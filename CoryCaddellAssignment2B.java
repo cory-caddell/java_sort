@@ -47,7 +47,7 @@ public class CoryCaddellAssignment2B {
 		CoryCaddellPrintArray(CoryCaddellArrayM);
 		
 		// display "QUICK SORT" to console
-		System.out.println("\nMERGE SORT");
+		System.out.println("\nQUICK SORT");
 		
 		// copy and array and display to console
 		int[] CoryCaddellArrayQ = CoryCaddellCopyArray(CoryCaddellArray);
@@ -147,15 +147,17 @@ public class CoryCaddellAssignment2B {
 				
 		if(array.length > 1) {
 			
+			// recursively sort first half of array
 			int[] firstHalf = new int[array.length / 2];
 			System.arraycopy(array, 0, firstHalf, 0, array.length / 2);
 			CoryCaddellMergeSort(firstHalf);
 			
+			// recursively sort second half of array
 			int[] secondHalf = new int[array.length - firstHalf.length];
 			System.arraycopy(array, firstHalf.length, secondHalf, 0, secondHalf.length);
 			CoryCaddellMergeSort(secondHalf);
 			
-			// Merge the two sorted lists
+			// merge the two sorted lists
 			int firstHalfIndex = 0;		// current index of first half array
 			int secondHalfIndex = 0;	// current index of second half array
 			int originalArrayIndex = 0;	// current index of original array
@@ -192,8 +194,8 @@ public class CoryCaddellAssignment2B {
 		
 		if (last > first) {
 			int pivotIndex = partition(array, first, last);
-			CoryCaddellQuickSort(array, first, pivotIndex - 1);
-			CoryCaddellQuickSort(array, pivotIndex + 1, last);
+			CoryCaddellQuickSort(array, first, pivotIndex - 1);	// sort all elements <= pivotIndex
+			CoryCaddellQuickSort(array, pivotIndex + 1, last);	// sort all elements > pivotIndex
 		}
 	}
 	
