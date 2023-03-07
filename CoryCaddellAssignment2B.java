@@ -19,9 +19,12 @@ public class CoryCaddellAssignment2B {
 //		CoryCaddellBubbleSort(array);
 //		CoryCaddellPrintArray(array);
 		// sort using merge sort algorithm
-		CoryCaddellMergeSort(array);
-		CoryCaddellPrintArray(array);
+//		CoryCaddellMergeSort(array);
+//		CoryCaddellPrintArray(array);
 		// sort using quick sort algorithm
+		CoryCaddellQuickSort(array);
+		CoryCaddellPrintArray(array);
+		
 	}
 	
 	/** Method to print elements of array. */
@@ -114,6 +117,66 @@ public class CoryCaddellAssignment2B {
 			while (secondHalfIndex < secondHalf.length) {
 				array[originalArrayIndex++] = secondHalf[secondHalfIndex++];					
 			}
+		}
+	}
+	
+	/** Method to sort array via quick sort algorithm. */
+	public static void CoryCaddellQuickSort(int[] array) {
+		
+		// call helper method with additional parameters
+		CoryCaddellQuickSort(array, 0, array.length - 1);
+	}
+	
+	/** Helper method for quick sort algorithm. */
+	public static void CoryCaddellQuickSort(int[] array, int first, int last) {
+		
+		if (last > first) {
+			int pivotIndex = partition(array, first, last);
+			CoryCaddellQuickSort(array, first, pivotIndex - 1);
+			CoryCaddellQuickSort(array, pivotIndex + 1, last);
+		}
+	}
+	
+	/** Method to partition array for quick sort algorithm. */
+	public static int partition(int[] array, int first, int last) {
+		
+		int pivot = array[first];  	// pivot element - ideally this splits the array up evenly
+		int low = first + 1;		// beg index for forward search		
+		int high = last;			// beg index for backward search
+		
+		while (high > low) {
+			
+			// forward search - find index of element that is greater than or equal to pivot element
+			while (low <= high && array[low] <= pivot) {
+				low++;
+			}
+			
+			// backward search - find index of element that is less than pivot element
+			while (low <= high && array[high] > pivot) {
+				high--;
+			}
+			
+			// swap low and high elements
+			if (high > low) {
+				int temp = array[high];
+				array[high] = array[low];
+				array[low] = temp;
+			}
+		}
+		
+		// backward search - find next element that is less than pivot
+		while (high > first  && array[high] >= pivot) {
+			high--;
+		}
+				
+		// swap pivot with above element
+		if (pivot > array[high]) {
+			array[first] = array[high];
+			array[high] = pivot;
+			return high;				// next pivot index - splits array in two
+		}
+		else {
+			return first;				// array is sorted
 		}
 	}
 }
